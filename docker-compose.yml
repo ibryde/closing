@@ -1,0 +1,15 @@
+version: "2.27.0"
+services:
+  api:
+    build: ./src/api
+    ports:
+      - 7123:7123
+  swagger:
+    image: swaggerapi/swagger-ui
+    ports:
+      - 80:8080
+    environment:
+      - SWAGGER_JSON=/openapi/openapi.json
+    ## mount the swagger file to the environment
+    volumes:
+      - ./src/openapi:/openapi
