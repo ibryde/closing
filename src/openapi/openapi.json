@@ -1,0 +1,211 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "KARDHAM - Closing API 1.0",
+    "description": "FIXME : Some description was deleted here.",
+    "contact": {
+      "email": "dylann.innou@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "localhost:7123"
+    }
+  ],
+  "tags": [
+    {
+      "name": "closing",
+      "description": "Method to generate powerpoint presentation out of Excel file\n"
+    }
+  ],
+  "paths": {
+    "/generate": {
+      "post": {
+        "tags": [
+          "closing"
+        ],
+        "summary": "Generate a Powerpoint presentation out of a XLSX file",
+        "requestBody": {
+          "description": "Specify the path of the XLSX file",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "closing",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "todo"
+          },
+          "404": {
+            "description": "todo"
+          },
+          "422": {
+            "description": "todo"
+          }
+        }
+      }
+    },
+    "/load": {
+      "post": {
+        "tags": [
+          "closing"
+        ],
+        "summary": "Load a XLSX file into the database",
+        "requestBody": {
+          "description": "Specify the path of the XLSX file",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "closing",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "todo"
+          },
+          "404": {
+            "description": "todo"
+          },
+          "422": {
+            "description": "todo"
+          }
+        }
+      }
+    },
+    "/dump": {
+      "get": {
+        "tags": [
+          "closing"
+        ],
+        "summary": "Dumps all data into a PowerPoint presentation",
+        "description": "closing",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "todo"
+          },
+          "404": {
+            "description": "todo"
+          },
+          "422": {
+            "description": "todo"
+          }
+        }
+      }
+    },
+    "/dump/{table}": {
+      "get": {
+        "tags": [
+          "closing"
+        ],
+        "summary": "Dump a specific table you want to dump into a PowerPoint presentation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "table",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Name of the table you want to dump"
+          }
+        ],
+        "description": "closing",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "todo"
+          },
+          "404": {
+            "description": "todo"
+          },
+          "422": {
+            "description": "todo"
+          }
+        }
+      }
+    },
+    "/clean": {
+      "delete": {
+        "tags": [
+          "closing"
+        ],
+        "summary": "Remove all data from the database",
+        "description": "closing",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "You have not the right permission to delete the database.\n"
+          }
+        }
+      }
+    }
+  }
+}
