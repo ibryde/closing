@@ -1,15 +1,42 @@
-version: "2.27.0"
+version: "3.1"
 services:
   api:
     build: ./src/api
     ports:
       - 7123:7123
+
+  webapp:
+    build: ./src/webapp
+    ports:
+      - 80:5555
+    environment:
+      - HTTPS=true
+    
   swagger:
     image: swaggerapi/swagger-ui
     ports:
-      - 80:8080
+      - 8888:8888
     environment:
+      - PORT=8888
       - SWAGGER_JSON=/openapi/openapi.json
     ## mount the swagger file to the environment
     volumes:
       - ./src/openapi:/openapi
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 6789:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+      ME_CONFIG_BASICAUTH: false
