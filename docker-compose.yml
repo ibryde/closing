@@ -9,6 +9,8 @@ services:
     build: ./src/webapp
     ports:
       - 80:5555
+    environment:
+      - HTTPS=true
     
   swagger:
     image: swaggerapi/swagger-ui
