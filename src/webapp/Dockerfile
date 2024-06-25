@@ -2,6 +2,8 @@ FROM node:22-alpine3.19
 
 COPY ./ ./
 
+COPY ./static /static
+
 RUN npm install http-server --save-dev
 
 EXPOSE 5555

@@ -12,6 +12,11 @@ services:
     build: ./src/api
     ports:
       - 7123:7123
+    volumes:
+      - ./resources:/resources:rw
+      - ./resources/json:/resources/json:rw
+      - ./resources/pptx:/resources/pptx:rw
+      - ./resources/xlsx:/resources/xlsx:rw
 
   webapp:
     build: ./src/webapp
@@ -20,6 +25,12 @@ services:
       - 5555:5555
     environment:
       - HTTPS=true
+    volumes:
+      - /static:/static:rw
+      - ./resources:/resources:rw
+      - ./resources/json:/resources/json:rw
+      - ./resources/pptx:/resources/pptx:rw
+      - ./resources/xlsx:/resources/xlsx:rw
     
   swagger:
     image: swaggerapi/swagger-ui
@@ -38,6 +49,11 @@ services:
     build: ./src/flask
     ports:
       - 9456:9456
+    volumes:
+      - ./resources:/resources:rw
+      - ./resources/json:/resources/json:rw
+      - ./resources/pptx:/resources/pptx:rw
+      - ./resources/xlsx:/resources/xlsx:rw
 
   mongo:
     image: mongo

@@ -23,6 +23,11 @@
         caddy
         # For HTTPS certification
         nss
+
+		# For Flask Implementation
+		python311
+		python311Packages.flask
+		python311Packages.python-pptx
       ];
     };
   };
