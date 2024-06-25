@@ -20,6 +20,9 @@
         # Other dependencies
         maven
         kotlin
+        caddy
+        # For HTTPS certification
+        nss
       ];
     };
   };

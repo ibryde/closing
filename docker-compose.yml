@@ -1,5 +1,13 @@
 version: "3.1"
 services:
+  caddy:
+    image: caddy:2.8.4-alpine
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./src/caddy/:/etc/caddy/
+
   api:
     build: ./src/api
     ports:
@@ -7,18 +15,21 @@ services:
 
   webapp:
     build: ./src/webapp
+    container_name: webapp
     ports:
-      - 80:5555
+      - 5555:5555
     environment:
       - HTTPS=true
     
   swagger:
     image: swaggerapi/swagger-ui
+    container_name: swagger
     ports:
       - 8888:8888
     environment:
       - PORT=8888
       - SWAGGER_JSON=/openapi/openapi.json
+      - BASE_URL=/api
     ## mount the swagger file to the environment
     volumes:
       - ./src/openapi:/openapi
@@ -32,6 +43,7 @@ services:
 
   mongo-express:
     image: mongo-express
+    container_name: mongo
     restart: always
     ports:
       - 6789:8081
@@ -40,3 +52,4 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
       ME_CONFIG_BASICAUTH: false
+      ME_CONFIG_SITE_BASEURL: /mongo
