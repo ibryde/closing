@@ -12,10 +12,6 @@ UPLOAD_FOLDER = './uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-@app.route('/')
-def index():
-    return render_template('index.html')
-
 @app.route('/convert', methods=['POST'])
 def convert_json_to_ppt():
     if 'jsonFile' not in request.files:
@@ -101,4 +97,4 @@ def download_file(filename):
     return send_file(os.path.join(app.config['UPLOAD_FOLDER'], filename), as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=9456)

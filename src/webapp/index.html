@@ -1,13 +1,27 @@
-<html>
-    <head>
-    </head>
-    <body>
-        <h1>Hello Kardham! Hello</h1> 
-        <p>This is a paragraph</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Export data to PowerPoint</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>JSON to PowerPoint Converter</h1>
+    </header>
+    
+    <main>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="jsonFile" name="jsonFile" accept=".json">
+            <button type="button" onclick="convertJsonToPPT()">Convert</button>
+        </form>
+    </main>
 
-        <button id="generate">GENERATE</button>
-        <button id="clean">CLEAN</button>
+    <button id="generate">GENERATE</button>
+    <button id="clean">CLEAN</button>
 
-		<script src="endpoint.js"></script> 
-    </body>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/endpoint.js') }}"></script> 
+</body>
 </html>
