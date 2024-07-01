@@ -1,12 +1,14 @@
 import json
 import os
 from flask import Flask, request, jsonify, send_file, render_template
+from flask_cors import CORS
 
 from pptx import Presentation
 from pptx.util import Inches
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+CORS(app)
 
 UPLOAD_FOLDER = './uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -91,6 +93,7 @@ def convert_json_to_ppt():
             return jsonify({'success': True, 'file_url': f'/download/{os.path.basename(ppt_path)}'})
         except Exception as e:
             return jsonify({'success': False, 'error': str(e)})
+
 
 @app.route('/download/<filename>')
 def download_file(filename):

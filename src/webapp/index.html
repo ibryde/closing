@@ -104,8 +104,10 @@ function convertJsonToPPT() {
 
     formData.append('jsonFile', fileField.files[0]);
 
-    fetch('http://localhost:7123/convert', {
+    fetch('http://localhost:9456/convert', {
         method: 'POST',
+        mode: 'cors',
+        credentials: 'same-origin',
         body: formData,
     })
     .then(response => response.json())
@@ -120,6 +122,6 @@ function convertJsonToPPT() {
 }
     </script>
 
-    <script src="/static/js/test.js"></script>
+    <script src="./static/js/test.js"></script>
 </body>
 </html>
