@@ -1,13 +1,5 @@
 version: "3.1"
 services:
-  caddy:
-    image: caddy:2.8.4-alpine
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - ./src/caddy/:/etc/caddy/
-
   api:
     build: ./src/api
     ports:
@@ -26,12 +18,19 @@ services:
     environment:
       - HTTPS=true
     volumes:
-      - /static:/static:rw
-      - ./resources:/resources:rw
-      - ./resources/json:/resources/json:rw
-      - ./resources/pptx:/resources/pptx:rw
-      - ./resources/xlsx:/resources/xlsx:rw
+      - ./src/webapp:/usr/src/app
+    working_dir: /usr/src/app
     
+  caddy:
+    image: caddy:2.8.4-alpine
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./src/caddy/:/etc/caddy/
+    depends_on:
+      - webapp
+
   swagger:
     image: swaggerapi/swagger-ui
     container_name: swagger

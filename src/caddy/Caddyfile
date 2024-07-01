@@ -1,5 +1,5 @@
 :80 {
-    reverse_proxy /          webapp:5555
+    reverse_proxy /*         webapp:5555
     reverse_proxy /api/*     swagger:8888
     reverse_proxy /mongo/*   mongo:8081
 }

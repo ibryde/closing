@@ -9,14 +9,14 @@ function convertJsonToPPT() {
 
     formData.append('jsonFile', fileField.files[0]);
 
-    fetch('/convert', {
+    fetch('http://localhost:9456/convert', {
         method: 'POST',
         body: formData,
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            window.location.href = data.file_url;
+            window.location.href = "http://localhost:9456" + data.file_url;
         } else {
             alert('Conversion failed: ' + data.error);
         }

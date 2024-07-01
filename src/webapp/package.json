@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-server --port 5555"
+    "start": "http-server -p 5555"
   },
   "author": "Dylan Innou & Valerie Rakatondrajaona",
   "license": "ISC",
